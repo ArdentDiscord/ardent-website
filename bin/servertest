@@ -1,0 +1,40 @@
+import express from "express";
+import webpack from "webpack";
+import webpackDevMiddleware from "webpack-dev-middleware";
+import webpackHotMiddleware from "webpack-hot-middleware";
+import webpackHotServerMiddleware from "webpack-hot-server-middleware";
+import config from "../webpack/webpack.config";
+
+// const publicPath = config[0].output.publicPath;
+// const outputPath = config[0].output.path;
+
+const app = express();
+const compiler = webpack(config);
+
+app.use(
+  webpackDevMiddleware(compiler, {
+    serverSideRender: true
+  })
+);
+app.use(
+  webpackHotMiddleware(
+    compiler.compilers.find(compiler => compiler.name === "client")
+  )
+);
+app.use(
+  webpackHotServerMiddleware(compiler, {
+    chunkName: "server"
+  })
+);
+
+app.listen(6060);
+
+// webpack(config).run((err, stats) => {
+//   const clientStats = stats.toJson().children[0];
+//   const serverRender = require("../dist/server/server.js").default;
+
+//   app.use(publicPath, express.static(outputPath));
+//   app.use(serverRender({ clientStats }));
+
+//   app.listen(6060);
+// });

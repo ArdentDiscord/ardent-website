@@ -1,0 +1,29 @@
+import Discord from 'discord.js';
+
+export default new Discord.Client({
+  disabledEvents: [
+    'GUILD_UPDATE',
+    'GUILD_MEMBER_ADD',
+    'GUILD_MEMBER_REMOVE',
+    'GUILD_MEMBER_UPDATE',
+    'GUILD_ROLE_CREATE',
+    'GUILD_ROLE_DELETE',
+    'GUILD_ROLE_UPDATE',
+    'GUILD_BAN_ADD',
+    'GUILD_BAN_REMOVE',
+    'CHANNEL_CREATE',
+    'CHANNEL_DELETE',
+    'CHANNEL_UPDATE',
+    'CHANNEL_PINS_UPDATE',
+    'MESSAGE_CREATE',
+    'MESSAGE_DELETE',
+    'MESSAGE_UPDATE',
+    'MESSAGE_DELETE_BULK',
+    'MESSAGE_REACTION_ADD',
+    'MESSAGE_REACTION_REMOVE',
+    'MESSAGE_REACTION_REMOVE_ALL',
+    'VOICE_STATE_UPDATE',
+    'TYPING_START',
+    'VOICE_SERVER_UPDATE'
+  ]
+});
